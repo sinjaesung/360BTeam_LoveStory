@@ -10,7 +10,9 @@ public class TutorialController : MonoBehaviour
     private string nextSceneName = "";
 
     private TutorialBase currentTutorial = null;
-    private int currentIndex = -1;
+    public int currentIndex = -1;
+
+    public bool isCompleted = false;
 
     private void Start()
     {
@@ -52,7 +54,7 @@ public class TutorialController : MonoBehaviour
     public void CompletedAllTutorials()
     {
         currentTutorial = null;
-
+        isCompleted = true;
         // 행동 양식이 여러 종류가 되었을 때 코드 추가 작성
         // 현재는 씬 전환
 

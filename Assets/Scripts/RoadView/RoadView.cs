@@ -7,8 +7,6 @@ public class RoadView : MonoBehaviour
 {
     [SerializeField] private new Camera camera;
 
-    //나침반 변수
-    [SerializeField] private RectTransform rtCompass;
     [SerializeField] private float fov = 0;
 
     [SerializeField] private float wheelSpeed = 10f;
@@ -71,6 +69,6 @@ public class RoadView : MonoBehaviour
         }
 
         camera.transform.eulerAngles = new Vector3(roll, pitch, 0);//x축회전,y축회전 반영
-        rtCompass.rotation = Quaternion.Euler(0, 0, pitch);//화면의 좌우회전(카메라y축회전) pitch값 그대로 반영 나침반
+        //rtCompass.rotation = Quaternion.Euler(0, 0, pitch);//화면의 좌우회전(카메라y축회전) pitch값 그대로 반영 나침반
     }
 }

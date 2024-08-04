@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy02
+  - Enemy
+  - Pickupgroup1_true
+  - Pickupgroup1_false
+  - Pickupgroup2_true
+  - Pickupgroup2_false
   layers:
   - Default
   - TransparentFX
@@ -11,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - PickupGroup
   - 
   - 
   - 

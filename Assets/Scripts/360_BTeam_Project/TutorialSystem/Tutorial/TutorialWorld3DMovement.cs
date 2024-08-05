@@ -11,13 +11,12 @@ public class TutorialWorld3DMovement : TutorialBase
     [SerializeField]
     private Vector3 endPosition;//이동할 공간상의 위치(플레이어의 바로 앞으로)
     private bool isCompleted = false;
-    private Animator animator;
 
     public CompletedAction completeAction;
-
+    public Player3d_Planet player;
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        player = FindObjectOfType<Player3d_Planet>();
     }
     public override void Enter()
     {
@@ -32,7 +31,7 @@ public class TutorialWorld3DMovement : TutorialBase
             if (completeAction == CompletedAction.Greeting)
             {
                 Debug.Log("TutorialMovement3D CompletedAction Greeting>>");
-                Greeting();
+                //Greeting();
             }
             controller.SetNextTutorial();
         }
@@ -40,7 +39,7 @@ public class TutorialWorld3DMovement : TutorialBase
 
     public void Greeting()
     {
-        animator.SetTrigger("Greeting");
+        //animator.SetTrigger("Greeting");
     }
     public override void Exit()
     {
@@ -52,6 +51,7 @@ public class TutorialWorld3DMovement : TutorialBase
         float percent = 0;
         float moveTime = 1.2f;
         Vector3 start = pos.position;
+        transform.LookAt(player.transform.position - transform.position);
 
         while (percent < 1)
         {
@@ -59,6 +59,7 @@ public class TutorialWorld3DMovement : TutorialBase
             percent = current / moveTime;
 
             pos.position = Vector3.Lerp(start, endPosition, percent);
+            transform.LookAt(player.transform.position - transform.position);
 
             yield return null;
         }

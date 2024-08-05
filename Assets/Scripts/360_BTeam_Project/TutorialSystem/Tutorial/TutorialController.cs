@@ -14,8 +14,15 @@ public class TutorialController : MonoBehaviour
 
     public bool isCompleted = false;
 
+    public Player3d_Planet player;
+
+    [SerializeField] private bool isDynamicScene = false;
+    [SerializeField] private string HappyEndingSceneName;
+    [SerializeField] private string SadEndingSceneName;
+    [SerializeField] private string NormalEndingSceneName;
     private void Start()
     {
+        player = FindObjectOfType<Player3d_Planet>();
         SetNextTutorial();
     }
 
@@ -58,11 +65,29 @@ public class TutorialController : MonoBehaviour
         // 행동 양식이 여러 종류가 되었을 때 코드 추가 작성
         // 현재는 씬 전환
 
-        Debug.Log("Complete All >> 다음 타깃 씬 이동>>>");
+        Debug.Log("[CompletedAllTutorials]Complete All >> 다음 타깃 씬 이동>>>");//1회(맨 마지막 도달시 첫 한번만 실행)
 
         if (!nextSceneName.Equals(""))
         {
             SceneManager.LoadScene(nextSceneName);
+        }
+
+        if (isDynamicScene)
+        {
+            if(player.LoveScore >= 10)
+            {
+                Debug.Log("[CompletedAllTutorials]해피앤딩씬으로 이동,씬별로 지정해둔 씬Name(happyScene)로 이동" + HappyEndingSceneName);
+                SceneManager.LoadScene(HappyEndingSceneName);
+            }
+            else if(player.LoveScore < -8)
+            {
+                Debug.Log("[CompletedAllTutorials]새드앤딩씬으로 이동,씬별로 지정해둔 씬Name(SadScene)로 이동" + SadEndingSceneName);
+                SceneManager.LoadScene(SadEndingSceneName);
+            }
+            else
+            {
+                Debug.Log("[CompletedAllTutorials]노말앤딩씬으로 이동,씬별로 지정해둔 씬Name(NormalScene)로 이동" + NormalEndingSceneName);
+            }
         }
     }
 }

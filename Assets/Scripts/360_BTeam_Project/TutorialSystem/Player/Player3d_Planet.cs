@@ -25,6 +25,7 @@ public class Player3d_Planet : MonoBehaviour
     [SerializeField] private float autoTime = 0;
 
     [SerializeField] private int loveScore_ = 0;
+    //[SerializeField] private Animator MonsterAnim;
 
     public int LoveScore
     {
@@ -43,6 +44,8 @@ public class Player3d_Planet : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log("Player3d LoveScore Setup>>" + loveScore_);
+        //MonsterAnim.SetFloat("LoveScore", loveScore_);
         if (IsMoved == true)
         {
             //마우스 스크롤휠을 통한 카메라 화면 줌인아웃효과

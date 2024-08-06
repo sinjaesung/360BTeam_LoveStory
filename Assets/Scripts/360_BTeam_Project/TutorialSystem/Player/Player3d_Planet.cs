@@ -24,9 +24,12 @@ public class Player3d_Planet : MonoBehaviour
     [SerializeField] private float mouseSpeed = 10f;
 
     [SerializeField] private int loveScore_ = 0;
-    //[SerializeField] private int HeartCount = 3;
-    //[SerializeField] private Slider HealthSlider;
-    //public bool isGameOver = false;
+    [SerializeField] private int HeartCount = 3;
+    [SerializeField] private Slider HealthSlider;
+    public bool isGameOver = false;
+
+    public LoveGameManager lovegameManager;
+
     public int LoveScore
     {
         get
@@ -41,19 +44,29 @@ public class Player3d_Planet : MonoBehaviour
     private void Awake()
     {
         fov = camera.fieldOfView;
+        lovegameManager = FindObjectOfType<LoveGameManager>();
     }
-    /*public void SetHealth(int amount)
+    public void SetHealth(int amount)
     {
         HeartCount += amount;
+
+        if(HeartCount <= 0)
+        {
+            if (!isGameOver)
+            {
+                lovegameManager.GameOver();
+            }
+            isGameOver = true;
+        }
     }
     public void UpdateHealthSlider()
     {
         HealthSlider.value = HeartCount;
-    }*/
+    }
 
     private void Update()
     {
-       // UpdateHealthSlider();
+        UpdateHealthSlider();
         Debug.Log("Player3d LoveScore Setup>>" + loveScore_);
         //MonsterAnim.SetFloat("LoveScore", loveScore_);
         if (IsMoved == true)

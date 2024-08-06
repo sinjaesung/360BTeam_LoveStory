@@ -40,18 +40,18 @@ public class Converstation : MonoBehaviour
     [SerializeField] public bool isAction_TargetTutorial = false;
     [SerializeField] public TutorialControllerVer2 TargetTutorial;//대화 끝났을시나 or 특정상황에 진행할 타깃 튜토리얼
 
-    [SerializeField] public bool isLastDialog = false;
+    [SerializeField] public bool isLastDialog = false;//다음씬(씬 엔딩,result)를 결정짓기 전의 마지막 대화 다이아로그 인지 여부
 
-    [SerializeField] public bool isPlayerSpeak=true;//플레이어가 Inspector상에서 정적(수동)으로 말하고있는경우
+    [SerializeField] public bool isPlayerSpeak=true;//플레이어가 Inspector에서 지정한 Sprite(수동지정)으로 말하고있는경우,몬스터 등 다른캐릭터가 말할땐 Sprite동적지정
     [SerializeField] public string NowSpeakername = "";//이 개체에서 현재 말하고 있는 대상(화자)
 
-    public int ConversationIndex = 0;//해당 객체의 인댁스 유효값
+    public int ConversationIndex = 0;//해당 객체의 인댁스값(이 개체 자체의 index 값) 여러 Conversation개체간의 번호 순번 지정>
 
     public LoveGameManager lovegameManager;
 
     [SerializeField] private bool isDynamicScene = false;
     [SerializeField] private string HappyEndingSceneName;
-    [SerializeField] private string SadEndingSceneName;
+    [SerializeField] private string SadEndingSceneName;//오버엔딩(점수가 낮을경우) 보여지는 엔딩
 
     // Start is called before the first frame update
     void Start()
@@ -127,11 +127,12 @@ public class Converstation : MonoBehaviour
                     NowSpeakername = dialogue[dialogueCnt].name;
                     //Inspector Dialogue 입력 프롬프트(수동)에 따라서 그 대화일때의 화자의 CgSprite값(사람이 지정한) 설정
                     Debug.Log("[[Conversation]] sprite_CG name>" + sprite_CG.transform.name);
-                    sprite_CG.sprite = dialogue[dialogueCnt].cg; //LoveGameManager2에서 swap하고,여기선 그저 끄고 킨다.
+                    sprite_CG.sprite = dialogue[dialogueCnt].cg;
                     Debug.Log("[[Conversation]] SpriteCG>" + dialogue[dialogueCnt].cg);
                 }
                 else if (dialogue[dialogueCnt].isDynamicCg == true)
                 {
+                    //플레이어가 아닌 몬스터(슬라임,문어,타노스)등이 말하는 경우(몬스터의 표정이 동적으로 바뀌는 기획개발컨셉)
                     isPlayerSpeak = false;
                     NowSpeakername = dialogue[dialogueCnt].name;
                     //이와같은 경우에는 수동지정이 아닌 외부 클래스(스크립트)등에서 참조하여 접근 동적 Swap
@@ -150,18 +151,21 @@ public class Converstation : MonoBehaviour
                 }
                 else if (dialogue[dialogueCnt].isDynamicCg == true)
                 {
+                    //플레이어가 아닌 몬스터(슬라임,문어,타노스)등이 말하는 경우(몬스터의 표정이 동적으로 바뀌는 기획개발컨셉)
                     isPlayerSpeak = false;
                     NowSpeakername = dialogue[dialogueCnt].name;
                     //해당 대화 순서에서 만약 DynamicCg로써 자동으로 외부에서 SpriteCg에 접근하여 이미지Swap하는
                     //케이스라면 이미지가 활성화 되어있어야만 한다.
                     sprite_CG.gameObject.SetActive(true);
                 }
-
-                if (thinkCloud != null && isAction_TargetTutorial == true)
-                {
-                    thinkCloud.gameObject.SetActive(false);
-                }
             }
+
+            //대화창 클릭시점(명시적 기본값 말풍선은 항상 숨기고)->이후 dialogueCnt >= ViewThinkCloud_startIndex 조건 Update백그라운드 말풍선활성화
+            if (thinkCloud != null && isAction_TargetTutorial == true)
+            {
+                thinkCloud.gameObject.SetActive(false);
+            }
+
             dialogueCnt++; // 다음 대사와 cg가 나오도록
             playercameracontroll.IsMoved = false;//대화도중엔 플레이어 카메라조작 X
         }
@@ -196,7 +200,6 @@ public class Converstation : MonoBehaviour
                 {
                     Debug.Log("[[Conversation]] 다음 액션 튜토리얼로 넘어감 activeConversationIndex증가>>");
                     TargetTutorial.SetNextTutorial();
-                    //lovegameManager.activeConversationIndex++;
                 }
             }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class LoveGameManager : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class LoveGameManager : MonoBehaviour
     [SerializeField] public int activeConversationIndex = 0;//활성화대화인댁스
     [SerializeField] public bool isVer2Env = false;
     [SerializeField] private Converstation[] conversations;
-    
+
+    public GameObject GameOverPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,8 +65,7 @@ public class LoveGameManager : MonoBehaviour
                     //다른 캐릭터화자와 공유하는 캐릭터이미지
                     if (!activeConversation.isPlayerSpeak)
                     {
-                        //플레이어가 말하고 있는 경우에는 플레이어가 설정한 Sprite이미지를
-                        //몬스터 현재 Swap이미지로 바꾸지 않는다.
+                        //플레이어가 아닌 캐릭터(몬스터등)이 말하는경우에만 동적으로 대화ui 화자 이미지 Swap
                         Character_Conversation_stateImage.sprite = images[0];
                     }
                     else if (activeConversation.isPlayerSpeak)
@@ -227,11 +228,21 @@ public class LoveGameManager : MonoBehaviour
       
         if (player.LoveScore >= 10)
         {
-            Debug.Log("몬스터기쁨 결말 기쁨 결말 씬으로 이동 예정!!!");//DEBUG
+            //Debug.Log("몬스터기쁨 결말 기쁨 결말 씬으로 이동 예정!!!");//DEBUG
         }
         else if(player.LoveScore < -8)
         {
-            Debug.Log("몬스터화남 결말 화남 결말 씬으로 이동 예정!!!");//DEBUG
+            //Debug.Log("몬스터화남 결말 화남 결말 씬으로 이동 예정!!!");//DEBUG
         }           
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("게임오버>>");
+        GameOverPanel.SetActive(true);
+    }
+    public void ReloadNowScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -97,7 +97,7 @@ public class TutorialPickUpHiddenObjectsVer2 : TutorialBaseVer2
                 Destroy(hitObject.transform.gameObject);
                 Instantiate(false_Particle, hitObject.point, Quaternion.identity);
                 player.LoveScore -= 20;
-                //player.SetHealth(-1);
+                player.SetHealth(-1);
             }
         }
     }

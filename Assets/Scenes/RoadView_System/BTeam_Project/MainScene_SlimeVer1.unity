@@ -1425,6 +1425,7 @@ MonoBehaviour:
   - {fileID: 996984108}
   typingSpeed: 0.1
   keyCodeSkip: 32
+  speakerCnt: 3
 --- !u!1 &452258051
 GameObject:
   m_ObjectHideFlags: 0
@@ -3630,6 +3631,7 @@ MonoBehaviour:
   - {fileID: 996984108}
   typingSpeed: 0.1
   keyCodeSkip: 32
+  speakerCnt: 3
 --- !u!1 &1285752127
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,6 +3710,7 @@ MonoBehaviour:
   - {fileID: 996984108}
   typingSpeed: 0.1
   keyCodeSkip: 32
+  speakerCnt: 3
 --- !u!1 &1314638553
 GameObject:
   m_ObjectHideFlags: 0
@@ -5259,6 +5262,7 @@ MonoBehaviour:
   - {fileID: 996984108}
   typingSpeed: 0.1
   keyCodeSkip: 32
+  speakerCnt: 3
 --- !u!1 &1710992306
 GameObject:
   m_ObjectHideFlags: 0
@@ -5347,6 +5351,7 @@ MonoBehaviour:
   - {fileID: 996984108}
   typingSpeed: 0.1
   keyCodeSkip: 32
+  speakerCnt: 3
 --- !u!1 &1734887933
 GameObject:
   m_ObjectHideFlags: 0
@@ -5637,6 +5642,7 @@ MonoBehaviour:
   - {fileID: 996984108}
   typingSpeed: 0.1
   keyCodeSkip: 32
+  speakerCnt: 3
 --- !u!1 &1782103916
 GameObject:
   m_ObjectHideFlags: 0

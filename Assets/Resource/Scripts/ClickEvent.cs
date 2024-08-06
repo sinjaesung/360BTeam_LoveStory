@@ -36,7 +36,7 @@ public class ClickEvent : MonoBehaviour, IPointerEnterHandler
     {
         if (CanClick)
         {
-            //최초 아직 미 클릭한 경우에만 호버효과뜨게
+            //클릭 가능한 경우에만 호버효과뜨게
             GetComponent<SpriteRenderer>().color = new Color(200f / 255f, 250f / 255f, 250f / 255f);
             Debug.Log("Enter");
         }

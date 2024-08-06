@@ -12,7 +12,7 @@ using static UnityEditor.SceneView;
 
 public class Arrow : MonoBehaviour
 {
-    [SerializeField] private GameObject objMessage;
+    [SerializeField] private RectTransform objMessage;
     [SerializeField] private TMP_Text TextMessage;
 
     [SerializeField] private Vector3 offset = new Vector3(0, 1, 0);
@@ -29,11 +29,16 @@ public class Arrow : MonoBehaviour
     [SerializeField] private Camera playerCamera;
 
     [SerializeField] private int moveSceneIndex = 0;
+    [SerializeField] private int plantIndex = 0;
     [SerializeField] private FadeInOut fadeinout;
 
     [SerializeField] CameraMoveTest cameraMove;
+
+    [SerializeField] private PlanetUI planetui;
+
     private void Start()
     {
+        planetui = FindObjectOfType<PlanetUI>();
         fadeinout = FindObjectOfType<FadeInOut>();
         playerCamera = FindObjectOfType<Camera>();
         cameraMove = playerCamera.GetComponent<CameraMoveTest>();
@@ -55,20 +60,23 @@ public class Arrow : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("충돌 부딪힌 대상체>>" + other.transform.name);
-        objMessage.SetActive(true);
-        TextMessage.text = $"{name} go to Scene Move";
+        // objMessage.SetActive(true);
+        objMessage.anchoredPosition = new Vector2(0, 0);
+        TextMessage.text = $"{name} 행성으로 진입 하실거에요?";
+        planetui.activePlanetIndex = plantIndex;
     }
     private void OnTriggerExit(Collider other)
     {
-        objMessage.SetActive(false);
+        // objMessage.SetActive(false);
+        objMessage.anchoredPosition = new Vector2(0, 1200);
     }
-    public void UI_MoveScene_Close()
+    /*public void UI_MoveScene_Close()
     {
         objMessage.SetActive(false);
-    }
+    }*/
     public void SceneMove()
     {
-        Debug.Log("씬이동>>" + moveSceneIndex);
+        Debug.Log("[[Planet Scene Move]]행성 씬이동>>" + moveSceneIndex);
         //SceneManager.LoadScene(moveSceneIndex);
         StartCoroutine(SceneLoad());
     }
@@ -81,6 +89,7 @@ public class Arrow : MonoBehaviour
         fadeinout.StartFadeIn();
         yield return new WaitForSeconds(waitTime);
         Debug.Log("fadeinout효과가 모두 끝난 waitTime후에 씬 전환" + waitTime);
+        Debug.Log($"해당 {transform.name}행성 관련 씬으로 이동 [[Planet Scene Move]]>>" +moveSceneIndex);
         SceneManager.LoadScene(moveSceneIndex);
     }
 

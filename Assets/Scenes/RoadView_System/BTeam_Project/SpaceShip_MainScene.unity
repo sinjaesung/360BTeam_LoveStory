@@ -3982,6 +3982,12 @@ MonoBehaviour:
   - {fileID: 1702708490}
   - {fileID: 1033751499}
   nextSceneName: TutorialSystem_MoveStandBy
+  currentIndex: -1
+  isCompleted: 0
+  player: {fileID: 0}
+  isDynamicScene: 0
+  HappyEndingSceneName: 
+  SadEndingSceneName: 
 --- !u!4 &1503898318
 Transform:
   m_ObjectHideFlags: 0
@@ -4199,6 +4205,7 @@ MonoBehaviour:
   - {fileID: 125480911}
   typingSpeed: 0.1
   keyCodeSkip: 32
+  speakerCnt: 2
 --- !u!1 &1550893806
 GameObject:
   m_ObjectHideFlags: 0
@@ -4566,6 +4573,7 @@ MonoBehaviour:
   - {fileID: 125480911}
   typingSpeed: 0.1
   keyCodeSkip: 32
+  speakerCnt: 2
 --- !u!1 &1646128021
 GameObject:
   m_ObjectHideFlags: 0
@@ -4706,6 +4714,7 @@ MonoBehaviour:
   - {fileID: 125480911}
   typingSpeed: 0.1
   keyCodeSkip: 32
+  speakerCnt: 2
 --- !u!114 &1702708490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4794,6 +4803,7 @@ MonoBehaviour:
   - {fileID: 125480911}
   typingSpeed: 0.1
   keyCodeSkip: 32
+  speakerCnt: 2
 --- !u!1 &1899087476
 GameObject:
   m_ObjectHideFlags: 0
@@ -5158,6 +5168,7 @@ GameObject:
   - component: {fileID: 1918290100}
   - component: {fileID: 1918290099}
   - component: {fileID: 1918290098}
+  - component: {fileID: 1918290101}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5239,6 +5250,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1419204344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1918290101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918290097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08469ea24d0fb46499c197c109117133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1918290099}
+  roll: 0
+  pitch: 0
+  fov: 0
+  mouseSpeed: 600
+  isMove: 1
 --- !u!1 &1918695542
 GameObject:
   m_ObjectHideFlags: 0

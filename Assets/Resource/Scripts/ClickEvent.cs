@@ -9,12 +9,17 @@ public class ClickEvent : MonoBehaviour, IPointerEnterHandler
     [SerializeField] GameObject Target_Dialogue;
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
-    [SerializeField] CameraControll camera;
+    [SerializeField] Player3d_Planet playercamera;
     public bool CanClick = false;
+
+    public LoveGameManager lovegameManager;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
+
+        lovegameManager = FindObjectOfType<LoveGameManager>();
     }
     public void ClickSlime()
     {
@@ -22,8 +27,9 @@ public class ClickEvent : MonoBehaviour, IPointerEnterHandler
         {
             //최초에 한번만 클릭할수있게하고,클릭하면 대화창 뜨고(카메라 조작안되게)
             Target_Dialogue.SetActive(true);
-            camera.isMove = false;
+            playercamera.IsMoved = false;
             CanClick = false;
+            lovegameManager.activeConversationIndex++;
         }
     }
     public void OnPointerEnter(PointerEventData eventData)

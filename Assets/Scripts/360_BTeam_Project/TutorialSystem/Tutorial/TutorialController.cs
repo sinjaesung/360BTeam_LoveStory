@@ -19,7 +19,6 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private bool isDynamicScene = false;
     [SerializeField] private string HappyEndingSceneName;
     [SerializeField] private string SadEndingSceneName;
-    [SerializeField] private string NormalEndingSceneName;
     private void Start()
     {
         player = FindObjectOfType<Player3d_Planet>();
@@ -83,11 +82,7 @@ public class TutorialController : MonoBehaviour
             {
                 Debug.Log("[CompletedAllTutorials]»õµå¾Øµù¾ÀÀ¸·Î ÀÌµ¿,¾Àº°·Î ÁöÁ¤ÇØµÐ ¾ÀName(SadScene)·Î ÀÌµ¿" + SadEndingSceneName);
                 SceneManager.LoadScene(SadEndingSceneName);
-            }
-            else
-            {
-                Debug.Log("[CompletedAllTutorials]³ë¸»¾Øµù¾ÀÀ¸·Î ÀÌµ¿,¾Àº°·Î ÁöÁ¤ÇØµÐ ¾ÀName(NormalScene)·Î ÀÌµ¿" + NormalEndingSceneName);
-            }
+            }     
         }
     }
 }

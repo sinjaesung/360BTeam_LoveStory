@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player3d_Planet : MonoBehaviour
 {
@@ -22,11 +23,10 @@ public class Player3d_Planet : MonoBehaviour
     [SerializeField] private float pitch;
     [SerializeField] private float mouseSpeed = 10f;
 
-    [SerializeField] private float autoTime = 0;
-
     [SerializeField] private int loveScore_ = 0;
-    //[SerializeField] private Animator MonsterAnim;
-
+    //[SerializeField] private int HeartCount = 3;
+    //[SerializeField] private Slider HealthSlider;
+    //public bool isGameOver = false;
     public int LoveScore
     {
         get
@@ -42,8 +42,18 @@ public class Player3d_Planet : MonoBehaviour
     {
         fov = camera.fieldOfView;
     }
+    /*public void SetHealth(int amount)
+    {
+        HeartCount += amount;
+    }
+    public void UpdateHealthSlider()
+    {
+        HealthSlider.value = HeartCount;
+    }*/
+
     private void Update()
     {
+       // UpdateHealthSlider();
         Debug.Log("Player3d LoveScore Setup>>" + loveScore_);
         //MonsterAnim.SetFloat("LoveScore", loveScore_);
         if (IsMoved == true)
@@ -61,7 +71,6 @@ public class Player3d_Planet : MonoBehaviour
             //마우스를 누르고 있는 상태에서 좌우로 움직여서 회전한다.카메라를 회전해야한다.
             if (Input.GetMouseButton(1))
             {
-                autoTime = 0;
 
                 float mouseX = Input.GetAxis("Mouse X");
                 float mouseY = Input.GetAxis("Mouse Y");
@@ -70,11 +79,7 @@ public class Player3d_Planet : MonoBehaviour
                 pitch -= mouseX * Time.deltaTime * mouseSpeed;//카메라 좌우 회전
 
                 roll = Mathf.Clamp(roll, -30, 60);//위아래 회전 범위
-            }
-            else
-            {
-                autoTime += Time.deltaTime;
-            }
+            }       
 
             if (pitch >= 360f)
             {

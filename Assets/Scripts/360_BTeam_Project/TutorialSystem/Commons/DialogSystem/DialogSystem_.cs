@@ -26,9 +26,11 @@ public class DialogSystem_ : MonoBehaviour
     private bool isTypingEffect = false;
     private Speaker_ currentSpeaker = Speaker_.Rico;
 
+    [SerializeField] private int speakerCnt = 3;
+
     public void Setup()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < speakerCnt; i++)
         {
             //모든 대화 관련 게임오브젝트 비활성화
             InActiveObjects(i);
@@ -63,7 +65,7 @@ public class DialogSystem_ : MonoBehaviour
             else
             {
                 //모든 캐릭터 이미지를 어둡게 설정
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < speakerCnt; i++)
                 {
                     //모든 대화 관련 게임오브젝트 비활성화
                     InActiveObjects(i);

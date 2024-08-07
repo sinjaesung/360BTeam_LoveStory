@@ -19,9 +19,14 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private bool isDynamicScene = false;
     [SerializeField] private string HappyEndingSceneName;
     [SerializeField] private string SadEndingSceneName;
+
+    public Maintain_GameDatamanager maintain_gameDatamanager;
+    public GameObject MarryMeSuggestUI;
+
     private void Start()
     {
         player = FindObjectOfType<Player3d_Planet>();
+        maintain_gameDatamanager = FindObjectOfType<Maintain_GameDatamanager>();
         SetNextTutorial();
     }
 
@@ -75,8 +80,10 @@ public class TutorialController : MonoBehaviour
         {
             if(player.LoveScore >= 10)
             {
-                Debug.Log("[CompletedAllTutorials]ÇØÇÇ¾Øµù¾ÀÀ¸·Î ÀÌµ¿,¾Àº°·Î ÁöÁ¤ÇØµĞ ¾ÀName(happyScene)·Î ÀÌµ¿" + HappyEndingSceneName);
-                SceneManager.LoadScene(HappyEndingSceneName);
+                Debug.Log("[CompletedAllTutorials]¸ó½ºÅÍ °áÈ¥ÇÁ·ÎÆ÷Áî UI ¶ç¿î´Ù" + HappyEndingSceneName);
+                //SceneManager.LoadScene(HappyEndingSceneName); °áÈ¥ÇØÁà UI (½Â³«,°ÅÀı)¸¦ ¶ç¿ì°í, ½Â³«½Ã¿¡ ÇØÇÇ¾Øµù°áÈ¥¾Øµù¾À ÀÌµ¿,°ÅÀı½Ã¿¡ 
+                //Çà¼º ¹ÛÀ¸·Î ³ª°¡Áö°í,°ÅÀıÈ½¼ö +1
+                MarryMeSuggestUI.SetActive(true);
             }
             else if(player.LoveScore < -8)
             {
@@ -84,6 +91,18 @@ public class TutorialController : MonoBehaviour
                 SceneManager.LoadScene(SadEndingSceneName);
             }     
         }
+    }
+
+    public void LoveAccept_Action()
+    {
+        Debug.Log("°áÈ¥ ½Â³« ÇØÇÇ¾Øµù ¾À ÀÌµ¿>>");
+        SceneManager.LoadScene(HappyEndingSceneName);
+    }
+    public void LoveRefuse_Action()
+    {
+        Debug.Log("°áÈ¥ °ÅÀı Çà¼º ¹Û ¾À ÀÌµ¿,°ÅÀı È½¼ö +1 °»½Å");
+        maintain_gameDatamanager.SetRefuseCount(1);
+        SceneManager.LoadScene("RoadViewBase_SpaceTour");
     }
 }
 

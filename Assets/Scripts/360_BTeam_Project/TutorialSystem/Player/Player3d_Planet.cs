@@ -41,10 +41,15 @@ public class Player3d_Planet : MonoBehaviour
             loveScore_ = value;
         }
     }
+    //Reset 관련 정보들
     private void Awake()
     {
         fov = camera.fieldOfView;
         lovegameManager = FindObjectOfType<LoveGameManager>();
+
+        loveScore_ = 0;//명시적으로 해당 개체는 씬별 개체로써,각 행성 도달시마다 사랑점수는 초기화
+        HeartCount = 3;//행성도달시마다 목숨은 초기화
+        isGameOver = false;//캐릭터 죽었나 살았나 여부 또한 초기화
     }
     public void SetHealth(int amount)
     {

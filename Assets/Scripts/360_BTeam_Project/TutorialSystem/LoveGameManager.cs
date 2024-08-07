@@ -245,4 +245,8 @@ public class LoveGameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    public void GotoStartScene()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

@@ -53,11 +53,15 @@ public class Converstation : MonoBehaviour
     [SerializeField] private string HappyEndingSceneName;
     [SerializeField] private string SadEndingSceneName;//오버엔딩(점수가 낮을경우) 보여지는 엔딩
 
+    public Maintain_GameDatamanager maintain_gameDatamanager;
+    public GameObject MarryMeSuggestUI;
+
     // Start is called before the first frame update
     void Start()
     {
         dialogueCnt = 0;
         playercameracontroll = FindObjectOfType<Player3d_Planet>();
+        maintain_gameDatamanager = FindObjectOfType<Maintain_GameDatamanager>();
         lovegameManager = FindObjectOfType<LoveGameManager>();
     }
 
@@ -211,7 +215,8 @@ public class Converstation : MonoBehaviour
                     if (playercameracontroll.LoveScore >= 10)
                     {
                         Debug.Log("[[Conversation]]몬스터기쁨 결말 기쁨 결말 씬으로 이동 예정!!!");//DEBUG
-                        SceneManager.LoadScene(HappyEndingSceneName);
+                        //SceneManager.LoadScene(HappyEndingSceneName);
+                        MarryMeSuggestUI.SetActive(true);
                     }
                     else if (playercameracontroll.LoveScore < -8)
                     {
@@ -220,6 +225,24 @@ public class Converstation : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    public void LoveAccept_Action()
+    {
+        if (isLastDialog)
+        {
+            Debug.Log("결혼 승낙 해피앤딩 씬 이동>>");
+            SceneManager.LoadScene(HappyEndingSceneName);
+        }
+    }
+    public void LoveRefuse_Action()
+    {
+        if (isLastDialog)
+        {
+            Debug.Log("결혼 거절 행성 밖 씬 이동,거절 횟수 +1 갱신");
+            maintain_gameDatamanager.SetRefuseCount(1);
+            SceneManager.LoadScene("RoadViewBase_SpaceTour");
         }
     }
 }

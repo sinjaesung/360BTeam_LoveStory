@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RoadView_System/BTeam_Project/MainScene_SlimeVer2.unity
     guid: c31b4be9d7ec4414dafc170a49658e9b
+  - enabled: 1
+    path: Assets/Scenes/RoadView_System/BTeam_Project/LonelyEnding.unity
+    guid: d1ed9d5cd210bd34597371909143f21c
   m_configObjects: {}
